@@ -706,17 +706,11 @@ public class Slider extends View implements ThemeManager.OnThemeChangedListener{
                 break;
             case MotionEvent.ACTION_MOVE:
                 if(mIsDragging) {
-                    if(mDiscreteMode) {
-                        float position = correctPosition(Math.min(1f, Math.max(0f, (x - mDrawRect.left) / mDrawRect.width())));
-                        setPosition(position, true, true, true);
-                    }
-                    else{
-                        float offset = (x - mMemoPoint.x) / mDrawRect.width();
-                        float position = Math.min(1f, Math.max(0f, mThumbPosition + offset));
-                        setPosition(position, false, true, true);
-                        mMemoPoint.x = x;
-                        invalidate();
-                    }
+                    float offset = (x - mMemoPoint.x) / mDrawRect.width();
+                    float position = Math.min(1f, Math.max(0f, mThumbPosition + offset));
+                    setPosition(position, false, true, true);
+                    mMemoPoint.x = x;
+                    invalidate();
                 }
                 break;
             case MotionEvent.ACTION_UP:
